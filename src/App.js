@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Header from './components/Header';
+import SideMenu from "./components/SideMenu";
+export const App = () => {
+  const [sideMenu, toggler] = useState('close');
+  function sideMenuToggle(){
+    if(sideMenu === 'close'){
+      toggler(sideMenu => sideMenu = 'open')
 
-function App() {
+    } else {
+       toggler(sideMenu => sideMenu = 'close')
+     }
+  } 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header toggleMenu = { sideMenuToggle }/>
+      <SideMenu toggle={sideMenu}/>
     </div>
-  );
+  )
 }
 
 export default App;
